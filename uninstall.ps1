@@ -12,7 +12,7 @@ Write-Host "=== Claude Pet Uninstaller ===" -ForegroundColor Cyan
 Write-Host ""
 
 # --- Step 1: Remove hooks from settings.json ---
-Write-Host "[1/2] Removing Claude Code hooks ..." -ForegroundColor Yellow
+Write-Host "[1/3] Removing Claude Code hooks ..." -ForegroundColor Yellow
 
 if (Test-Path $settingsPath) {
     $settingsText = Get-Content -Path $settingsPath -Raw -Encoding UTF8
@@ -61,13 +61,27 @@ if (Test-Path $settingsPath) {
 }
 
 # --- Step 2: Remove generated notify.ps1 ---
-Write-Host "[2/2] Removing generated files ..." -ForegroundColor Yellow
+Write-Host "[2/3] Removing generated files ..." -ForegroundColor Yellow
 
 if (Test-Path $outputPath) {
     Remove-Item $outputPath -Force
     Write-Host "  -> Deleted: $outputPath" -ForegroundColor Green
 } else {
     Write-Host "  -> notify.ps1 not found, nothing to delete" -ForegroundColor Gray
+}
+
+# --- Step 3: Clean up temp files ---
+Write-Host "[3/3] Cleaning up temp files ..." -ForegroundColor Yellow
+
+$tempFiles = @(
+    (Join-Path $env:TEMP "claude-pet.lock"),
+    (Join-Path $env:TEMP "claude-pet.log")
+)
+foreach ($f in $tempFiles) {
+    if (Test-Path $f) {
+        Remove-Item $f -Force
+        Write-Host "  -> Deleted: $f" -ForegroundColor Green
+    }
 }
 
 Write-Host ""

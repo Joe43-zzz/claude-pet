@@ -1,5 +1,15 @@
 ﻿param([string]$Type = "stop")
 
+try {
+
+# --- Throttle: skip if last notification was < 10s ago ---
+$lockFile = Join-Path $env:TEMP "claude-pet.lock"
+if (Test-Path $lockFile) {
+    $lastTime = [datetime]::ParseExact((Get-Content $lockFile -Raw).Trim(), 'o', $null)
+    if (([datetime]::UtcNow - $lastTime).TotalSeconds -lt 10) { exit 0 }
+}
+[IO.File]::WriteAllText($lockFile, [datetime]::UtcNow.ToString('o'))
+
 Add-Type -AssemblyName PresentationFramework
 Add-Type -AssemblyName PresentationCore
 Add-Type -AssemblyName WindowsBase
@@ -149,3 +159,10 @@ $timer.Start()
 $window.Add_MouseLeftButtonDown({ $window.Close() })
 
 $window.ShowDialog() | Out-Null
+
+} catch {
+    $logFile = Join-Path $env:TEMP "claude-pet.log"
+    $entry = "[$(Get-Date -Format 'yyyy-MM-dd HH:mm:ss')] $($_.Exception.Message)`n$($_.ScriptStackTrace)"
+    Add-Content -Path $logFile -Value $entry -Encoding UTF8
+    exit 0
+}
