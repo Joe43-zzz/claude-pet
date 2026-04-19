@@ -1,20 +1,16 @@
 # Claude Pet
 
-**Event-driven notification plugin for Claude Code on Windows.**
+> You kick off a long refactor, switch to a browser, and 20 minutes later realize Claude finished ages ago. Or worse — it's been waiting for your approval the whole time.
 
-Claude Pet stays completely silent while you work. When Claude finishes a task or needs your input, a small speech-bubble pops up in the corner of your screen — then fades away on its own.
+**Claude Pet is a "quiet" notification plugin for Claude Code.** It stays completely invisible while you work — no tray icon, no always-on desktop widget, no resource usage. The moment Claude finishes a task or needs your input, a small speech-bubble pops up in the corner and fades away on its own.
+
+Not another desktop pet. Just a timely nudge when it matters.
 
 > **[中文说明](#中文说明)**
 
 ---
 
-## Why Claude Pet?
-
-You kick off a long refactor, switch to a browser, and 20 minutes later realize Claude finished ages ago. Or worse — it's been waiting for your approval the whole time.
-
-Claude Pet fixes this with a lightweight, event-driven popup: no tray icon, no polling, no always-on desktop widget. It hooks into Claude Code's native [Hooks](https://docs.anthropic.com/en/docs/claude-code/hooks) system and only appears when something actually happens.
-
-### How is this different from desktop-pet projects?
+## How is this different from desktop-pet projects?
 
 | | Claude Pet | Desktop pet apps |
 |---|---|---|
@@ -130,15 +126,11 @@ claude-pet/
 
 # 中文说明
 
-**Claude Code 的事件驱动通知插件（Windows）。**
+> 你让 Claude Code 跑一个大重构，切去做别的事，半小时后回来发现它其实 3 分钟就停下来等你确认了——
 
-Claude Pet 平时完全静默。只有当 Claude 完成任务或需要你操作时，屏幕角落才会弹出一个小气泡——然后自动消失。
+**Claude Pet 是一个"安静的" Claude Code 通知插件。** 平时完全隐形：没有托盘图标，没有常驻桌面小部件，零资源占用。只有当 Claude 完成任务或需要你操作时，屏幕角落才弹出一个小气泡，然后自动消失。
 
-## 为什么需要 Claude Pet？
-
-你让 Claude 跑一个大重构，切到浏览器，20 分钟后才发现它早就跑完了。更惨的是——它可能一直在等你批准权限。
-
-Claude Pet 用轻量级事件驱动弹窗解决这个问题：没有托盘图标，没有轮询，没有常驻桌面小部件。它利用 Claude Code 原生的 [Hooks](https://docs.anthropic.com/en/docs/claude-code/hooks) 机制，只在真正有事发生时才出现。
+不是又一个桌面宠物，只是在该提醒你的时候提醒你。
 
 ### 和桌面宠物项目有什么区别？
 
